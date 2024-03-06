@@ -23,6 +23,40 @@
   </bootloader>
 
 
+  <add-on t="map">
+    <add_on_others t="list">
+      <listentry t="map">
+        <alias>base-non-oss</alias>
+        <media_url>http://cdn.opensuse.org/slowroll/repo/non-oss/</media_url>
+        <name>base-non-oss</name>
+        <priority t="integer">99</priority>
+        <product_dir/>
+      </listentry>
+      <listentry t="map">
+        <alias>h264</alias>
+        <media_url>http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed/</media_url>
+        <name>h264</name>
+        <priority t="integer">99</priority>
+        <product_dir/>
+      </listentry>
+      <listentry t="map">
+        <alias>base-oss</alias>
+        <media_url>http://cdn.opensuse.org/slowroll/repo/oss/</media_url>
+        <name>base-oss</name>
+        <priority t="integer">99</priority>
+        <product_dir/>
+      </listentry>
+      <listentry t="map">
+        <alias>update</alias>
+        <media_url>http://cdn.opensuse.org/update/slowroll/repo/oss/</media_url>
+        <name>update</name>
+        <priority t="integer">80</priority>
+        <product_dir/>
+      </listentry>
+    </add_on_others>
+  </add-on>
+
+
   <firewall t="map">
     <default_zone>public</default_zone>
     <enable_firewall t="boolean">true</enable_firewall>
@@ -270,41 +304,6 @@
       <userlist>dnsmasq</userlist>
     </group>
   </groups>
-
-<scripts>
-    <init-scripts config:type="list">
-        <script>
-        <interpreter>shell</interpreter>
-        <filename>start.sh</filename>
-        <source>
-        <![CDATA[
-#!/bin/sh
-  rm /etc/zypp/repos.d/* && \
-echo "
-[base-oss]
-enabled=1
-autorefresh=1
-baseurl=http://cdn.opensuse.org/slowroll/repo/oss/
-" > /etc/zypp/repos.d/base-oss.repo && \
-echo "
-[update]
-enabled=1
-autorefresh=1
-baseurl=http://cdn.opensuse.org/slowroll/repo/oss/
-" > /etc/zypp/repos.d/update.repo && \
-echo "
-[base-non-oss]
-enabled=1
-autorefresh=1
-baseurl=http://cdn.opensuse.org/slowroll/repo/non-oss/
-" > /etc/zypp/repos.d/base-non-oss.repo && \
-exit 0
-]]>
-
-        </source>
-        </script>
-    </init-scripts>
-</scripts>
 
   <host t="map">
     <hosts t="list">
