@@ -1,24 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE profile>
 <profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
-  <add-on t="map">
-    <add_on_others t="list">
-      <listentry t="map">
-        <alias>base-non-oss</alias>
-        <media_url>http://cdn.opensuse.org/slowroll/repo/non-oss/</media_url>
-        <name>base-non-oss</name>
-        <priority t="integer">99</priority>
-        <product_dir/>
-      </listentry>
-      <listentry t="map">
-        <alias>h264</alias>
-        <media_url>http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed/</media_url>
-        <name>h264</name>
-        <priority t="integer">99</priority>
-        <product_dir/>
-      </listentry>
-    </add_on_others>
-  </add-on>
+
+
   <bootloader t="map">
     <global t="map">
       <append>load_ramdisk=1 console=ttyS0,9600n quiet security=apparmor mitigations=off</append>
@@ -37,164 +21,16 @@
     </global>
     <loader_type>grub2</loader_type>
   </bootloader>
+
+
   <firewall t="map">
     <default_zone>public</default_zone>
     <enable_firewall t="boolean">true</enable_firewall>
     <log_denied_packets>off</log_denied_packets>
     <start_firewall t="boolean">true</start_firewall>
-    <zones t="list">
-      <zone t="map">
-        <description>Unsolicited incoming network packets are rejected. Incoming packets that are related to outgoing network connections are accepted. Outgoing network connections are allowed.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>block</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list"/>
-        <short>Block</short>
-        <target>%%REJECT%%</target>
-      </zone>
-      <zone t="map">
-        <description>For computers in your demilitarized zone that are publicly-accessible with limited access to your internal network. Only selected incoming connections are accepted.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>dmz</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list">
-          <service>ssh</service>
-        </services>
-        <short>DMZ</short>
-        <target>default</target>
-      </zone>
-      <zone t="map">
-        <description>All network connections are accepted.</description>
-        <interfaces t="list">
-          <interface>docker0</interface>
-        </interfaces>
-        <masquerade t="boolean">false</masquerade>
-        <name>docker</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list"/>
-        <short>docker</short>
-        <target>ACCEPT</target>
-      </zone>
-      <zone t="map">
-        <description>Unsolicited incoming network packets are dropped. Incoming packets that are related to outgoing network connections are accepted. Outgoing network connections are allowed.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>drop</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list"/>
-        <short>Drop</short>
-        <target>DROP</target>
-      </zone>
-      <zone t="map">
-        <description>For use on external networks. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">true</masquerade>
-        <name>external</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list">
-          <service>ssh</service>
-        </services>
-        <short>External</short>
-        <target>default</target>
-      </zone>
-      <zone t="map">
-        <description>For use in home areas. You mostly trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>home</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list">
-          <service>dhcpv6-client</service>
-          <service>mdns</service>
-          <service>samba-client</service>
-          <service>ssh</service>
-        </services>
-        <short>Home</short>
-        <target>default</target>
-      </zone>
-      <zone t="map">
-        <description>For use on internal networks. You mostly trust the other computers on the networks to not harm your computer. Only selected incoming connections are accepted.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>internal</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list">
-          <service>dhcpv6-client</service>
-          <service>mdns</service>
-          <service>samba-client</service>
-          <service>ssh</service>
-        </services>
-        <short>Internal</short>
-        <target>default</target>
-      </zone>
-      <zone t="map">
-        <description><![CDATA[     This zone is used internally by NetworkManager when activating a     profile that uses connection sharing and doesn't have an explicit     firewall zone set.     Block all traffic to the local machine except ICMP, ICMPv6, DHCP     and DNS. Allow all forwarded traffic.     Note that future package updates may change the definition of the     zone unless you overwrite it with your own definition.   ]]></description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>nm-shared</name>
-        <ports t="list"/>
-        <protocols t="list">
-          <listentry>icmp</listentry>
-          <listentry>ipv6-icmp</listentry>
-        </protocols>
-        <services t="list">
-          <service>dhcp</service>
-          <service>dns</service>
-          <service>ssh</service>
-        </services>
-        <short>NetworkManager Shared</short>
-        <target>ACCEPT</target>
-      </zone>
-      <zone t="map">
-        <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>public</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list">
-          <service>dhcpv6-client</service>
-          <service>ssh</service>
-        </services>
-        <short>Public</short>
-        <target>default</target>
-      </zone>
-      <zone t="map">
-        <description>All network connections are accepted.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>trusted</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list"/>
-        <short>Trusted</short>
-        <target>ACCEPT</target>
-      </zone>
-      <zone t="map">
-        <description>For use in work areas. You mostly trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
-        <interfaces t="list"/>
-        <masquerade t="boolean">false</masquerade>
-        <name>work</name>
-        <ports t="list"/>
-        <protocols t="list"/>
-        <services t="list">
-          <service>dhcpv6-client</service>
-          <service>ssh</service>
-        </services>
-        <short>Work</short>
-        <target>default</target>
-      </zone>
-    </zones>
   </firewall>
+
+
   <general t="map">
     <mode t="map">
       <confirm t="boolean">false</confirm>
@@ -432,6 +268,7 @@
       <userlist>dnsmasq</userlist>
     </group>
   </groups>
+
   <host t="map">
     <hosts t="list">
       <hosts_entry t="map">
@@ -478,21 +315,27 @@
       </hosts_entry>
     </hosts>
   </host>
+
+
   <networking t="map">
     <dns t="map">
       <dhcp_hostname t="boolean">false</dhcp_hostname>
-      <hostname>node00.example.com</hostname>
+      <hostname>slowroll.example.com</hostname>
       <resolv_conf_policy>auto</resolv_conf_policy>
     </dns>
     <ipv6 t="boolean">true</ipv6>
     <keep_install_network t="boolean">true</keep_install_network>
     <managed t="boolean">true</managed>
   </networking>
+  
+  
   <ntp-client t="map">
     <ntp_policy>auto</ntp_policy>
     <ntp_servers t="list"/>
     <ntp_sync>systemd</ntp_sync>
   </ntp-client>
+  
+  
   <partitioning t="list">
     <drive t="map">
       <device>/dev/vda</device>
@@ -571,9 +414,13 @@
       <use>all</use>
     </drive>
   </partitioning>
+
+
   <proxy t="map">
     <enabled t="boolean">false</enabled>
   </proxy>
+
+
   <services-manager t="map">
     <default_target>multi-user</default_target>
     <services t="map">
@@ -607,6 +454,8 @@
       </on_demand>
     </services>
   </services-manager>
+
+
   <software t="map">
     <install_recommended t="boolean">true</install_recommended>
     <instsource/>
@@ -624,8 +473,8 @@
       <package>e2fsprogs</package>
       <package>chrony</package>
       <package>btrfsprogs</package>
-      <package>autoyast2</package>
       <package>NetworkManager</package>
+      <package>micro-editor</package>
     </packages>
     <patterns t="list">
       <pattern>apparmor</pattern>
@@ -650,6 +499,8 @@
   <timezone t="map">
     <timezone>Europe/London</timezone>
   </timezone>
+
+
   <user_defaults t="map">
     <expire/>
     <group>100</group>
@@ -658,6 +509,8 @@
     <shell>/bin/bash</shell>
     <umask>022</umask>
   </user_defaults>
+
+
   <users t="list">
     <user t="map">
       <authorized_keys t="list"/>
@@ -1100,3 +953,17 @@
     </user>
   </users>
 </profile>
+
+<scripts>
+    <post-scripts config:type="list">
+      <script>
+        rm /etc/zypp/repos.d/*
+        zypper ar --refresh http://cdn.opensuse.org/slowroll/repo/oss/ base-oss
+        zypper ar --refresh http://cdn.opensuse.org/slowroll/repo/non-oss/ base-non-oss
+        zypper ar --refresh -p 80 http://cdn.opensuse.org/update/slowroll/repo/oss/ update
+        zypper ar --refresh --disable http://cdn.opensuse.org/slowroll/repo/src-oss/ base-src-oss
+        zypper ar --refresh --disable https://download.opensuse.org/debug/slowroll/repo/oss/ base-oss-debug
+        zypper ar --refresh http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed/ h264
+      </script>
+    </post-scripts>
+</scripts>
