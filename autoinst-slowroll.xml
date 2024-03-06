@@ -37,7 +37,7 @@
     </mode>
   </general>
 
-  
+
   <groups t="list">
     <group t="map">
       <gid>1000</gid>
@@ -273,15 +273,25 @@
 
 <scripts>
     <post-scripts config:type="list">
-      <script>
-        rm /etc/zypp/repos.d/*
-        zypper ar --refresh http://cdn.opensuse.org/slowroll/repo/oss/ base-oss
-        zypper ar --refresh http://cdn.opensuse.org/slowroll/repo/non-oss/ base-non-oss
-        zypper ar --refresh -p 80 http://cdn.opensuse.org/update/slowroll/repo/oss/ update
-        zypper ar --refresh --disable http://cdn.opensuse.org/slowroll/repo/src-oss/ base-src-oss
-        zypper ar --refresh --disable https://download.opensuse.org/debug/slowroll/repo/oss/ base-oss-debug
-        zypper ar --refresh http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed/ h264
-      </script>
+        <script>
+        <interpreter>shell</interpreter>
+        <filename>start.sh</filename>
+        <source>
+        <![CDATA[
+#!/bin/sh
+rm /etc/zypp/repos.d/*
+zypper ar --refresh http://cdn.opensuse.org/slowroll/repo/oss/ base-oss
+zypper ar --refresh http://cdn.opensuse.org/slowroll/repo/non-oss/ base-non-oss
+zypper ar --refresh -p 80 http://cdn.opensuse.org/update/slowroll/repo/oss/ update
+zypper ar --refresh --disable http://cdn.opensuse.org/slowroll/repo/src-oss/ base-src-oss
+zypper ar --refresh --disable https://download.opensuse.org/debug/slowroll/repo/oss/ base-oss-debug
+zypper ar --refresh http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed/ h264
+exit 0
+
+]]>
+
+        </source>
+        </script>
     </post-scripts>
 </scripts>
 
@@ -490,7 +500,6 @@
       <package>chrony</package>
       <package>btrfsprogs</package>
       <package>NetworkManager</package>
-      <package>micro-editor</package>
     </packages>
     <patterns t="list">
       <pattern>apparmor</pattern>
