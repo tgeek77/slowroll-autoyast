@@ -497,6 +497,7 @@
       <pattern>x86_64_v3</pattern>
       <pattern>yast2_basis</pattern>
       <pattern>yast2_desktop</pattern>
+      <pattern>openSUSEway</pattern>
     </patterns>
     <products t="list">
       <product>openSUSE</product>
