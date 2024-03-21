@@ -7,6 +7,20 @@ I suggest using the versions found in the stable directory for testing. These ar
 - Default Username used in this file: tux
 - Default Password: linux
 
+*Update*:
+
+I have created an autoyast file for installing Slowroll to a system with a GUI with MATE installed. I chose MATE because it is simpler than Gnome or KDE with less dependencies. It almost works!
+
+After installing Slowroll with this file, everything is installed except the display-manager service does not start automatically but it does start manually with `sudo systemctl start display-manager`.
+
+This means that currently you will get just an terminal after installation and the GUI can be started by starting the service.
+
+
+
+
+
+
+
 Help:
 - What is [Slowroll](https://en.opensuse.org/openSUSE:Slowroll)?
 - What is [AutoYaST](https://doc.opensuse.org/documentation/leap/autoyast/single-html/book-autoyast/index.html)?
