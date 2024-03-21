@@ -519,19 +519,12 @@
       <pattern>enhanced_base</pattern>
       <pattern>fonts</pattern>
       <pattern>fonts_opt</pattern>
-      <pattern>games</pattern>
-      <pattern>gnome_basis_opt</pattern>
-      <pattern>imaging</pattern>
-      <pattern>mate</pattern>
-      <pattern>mate_admin</pattern>
-      <pattern>mate_basis</pattern>
-      <pattern>mate_internet</pattern>
-      <pattern>mate_utilities</pattern>
       <pattern>minimal_base</pattern>
       <pattern>multimedia</pattern>
-      <pattern>office</pattern>
       <pattern>sw_management</pattern>
       <pattern>x11</pattern>
+      <pattern>kde</pattern>
+      <pattern>kde_plasma</pattern>
       <pattern>x11_enhanced</pattern>
       <pattern>x11_yast</pattern>
       <pattern>x86_64_v3</pattern>
@@ -886,6 +879,25 @@
       <uid>0</uid>
       <user_password>$6$Bcpkec3DnRS8PgFf$gE0A5/VMtTPHxxTI6dPp7oiEcY31Rd2ycE.nB4YLGKiR.Bz.VBPdCffgBax93m0aGNVoWcVL5kvBn6TmIzkAU.</user_password>
       <username>root</username>
+    </user>
+    <user t="map">
+      <encrypted t="boolean">true</encrypted>
+      <fullname>Postfix Daemon</fullname>
+      <gid>51</gid>
+      <home>/var/spool/postfix</home>
+      <home_btrfs_subvolume t="boolean">false</home_btrfs_subvolume>
+      <password_settings t="map">
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/usr/sbin/nologin</shell>
+      <uid>51</uid>
+      <user_password>!*</user_password>
+      <username>postfix</username>
     </user>
     <user t="map">
       <encrypted t="boolean">true</encrypted>
