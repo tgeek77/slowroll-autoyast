@@ -9,17 +9,10 @@ I suggest using the versions found in the stable directory for testing. These ar
 
 *Update*:
 
-I have created an autoyast file for installing Slowroll to a system with a GUI with MATE installed. I chose MATE because it is simpler than Gnome or KDE with less dependencies. It almost works!
+New AutoYaST files are available to install KDE, Mate, Budgie, and Sway in the "stable" directory. They have been testing in KVM VMs and not on physical servers since my homelab is poor and VMs are the best I can do at this time.
+Each AutoYaST file will install Slowroll by default. You will not need to add more repositories later.
 
-After installing Slowroll with this file, everything is installed except the display-manager service does not start automatically but it does start manually with `sudo systemctl start display-manager`.
-
-This means that currently you will get just an terminal after installation and the GUI can be started by starting the service.
-
-
-
-
-
-
+When Slowroll becomes an official project, the URL for the repositories will be updated.
 
 Help:
 - What is [Slowroll](https://en.opensuse.org/openSUSE:Slowroll)?
